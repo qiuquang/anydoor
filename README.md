@@ -9,3 +9,5 @@ supervisor app.js
 
 模板引擎 
 handlebars
+
+mime 文件类型

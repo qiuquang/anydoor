@@ -18,7 +18,7 @@
   <body>
     {{#each files}}
     <!-- 此处this为files里面的层级，dir是和this的父容器在一个层级，所以「../dir」代表返回上一级 -->
-    <a href="{{../dir}}/{{this}}">{{this}}</a>
+    <a href="{{../dir}}/{{file}}">【{{icon}}】{{file}}</a>
     {{/each}}
   </body>
 </html>
