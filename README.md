@@ -6,3 +6,6 @@ npm install supervisor -g
 
 使用supervisor启动app.js   
 supervisor app.js
+
+模板引擎 
+handlebars

@@ -23,6 +23,7 @@
     "eslint": "^8.24.0"
   },
   "dependencies": {
-    "chalk": "4.0.0"
+    "chalk": "4.0.0",
+    "handlebars": "^4.7.7"
   }
 }

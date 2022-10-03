@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+      body{
+        margin: 30px;
+      }
+      a{
+        display: block;
+        font-size: 28px;
+      }
+    </style>
+  </head>
+  <body>
+    {{#each files}}
+    <!-- 此处this为files里面的层级，dir是和this的父容器在一个层级，所以「../dir」代表返回上一级 -->
+    <a href="{{../dir}}/{{this}}">{{this}}</a>
+    {{/each}}
+  </body>
+</html>
