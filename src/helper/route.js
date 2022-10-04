@@ -11,6 +11,7 @@ const tplPath = path.join(__dirname, "../template/dir.dpl");
 const mime = require("../helper/mime");
 const compress = require("../helper/compress");
 const range = require("../helper/range");
+const isFresh = require("../helper/cache");
 // const source = fs.readFileSync(tplPath, "utf-8");
 const source = fs.readFileSync(tplPath);
 const template = Handlebars.compile(source.toString());
@@ -22,6 +23,13 @@ module.exports = async function (req, res, filePath) {
       // 是文件
       res.setHeader("Content-Type", mime(filePath));
       let rs;
+
+      if (isFresh(stats, req, res)) {
+        res.statusCode = 304;
+        res.end();
+        return;
+      }
+
       const { code, start, end } = range(stats.size, req, res);
       if (code === 200) {
         res.statusCode = 200;
@@ -41,7 +49,6 @@ module.exports = async function (req, res, filePath) {
       res.setHeader("Content-Type", "text/html");
 
       const dir = path.relative(config.root, filePath); // 获取相对路径
-      console.log(dir);
 
       const data = {
         title: path.basename(filePath),

@@ -1,9 +1,7 @@
 const { createGzip, createDeflate } = require("zlib");
 
 module.exports = (rs, req, res) => {
-  console.log(req.headers);
   const acceptencoding = req.headers["accept-encoding"];
-  console.log("acceptencoding", acceptencoding);
   // 单词边界
   if (!acceptencoding || !acceptencoding.match(/\b(gzip|deflate)\b/)) {
     return rs;

@@ -28,3 +28,12 @@ curl http://127.0.0.1:9527/LICENSE
 curl -I http://127.0.0.1:9527/LICENSE
 curl -i http://127.0.0.1:9527/LICENSE
 curl -r 0-10 -i http://127.0.0.1:9527/LICENSE
+
+缓存
+协商缓存   修改时间、hash值
+
+缓存header
+1.Expires(绝对时间)，Cache-Control(相对时间)
+2.If-Modified-Sice（req）/Last-Modified（res） // 上次修改时间
+req里面包含第一个，请求时看上次修改时间之后是否还修改过，如果没有就还是原来的值，如果有就在res里面更新cache-control的值
+3.If-None-Match/ETag
