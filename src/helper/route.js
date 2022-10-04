@@ -9,6 +9,7 @@ const readdir = promisify(fs.readdir);
 
 const tplPath = path.join(__dirname, "../template/dir.dpl");
 const mime = require("../helper/mime");
+const compress = require("../helper/compress");
 // const source = fs.readFileSync(tplPath, "utf-8");
 const source = fs.readFileSync(tplPath);
 const template = Handlebars.compile(source.toString());
@@ -20,10 +21,11 @@ module.exports = async function (req, res, filePath) {
       // 是文件
       res.statusCode = 200;
       res.setHeader("Content-Type", mime(filePath));
-      // readFile(filePath,(err,data)=>{ // 操作响应速度比较慢，会卡
-      //   res.end(data)
-      // })
-      fs.createReadStream(filePath).pipe(res); // 创建一个读的流返回给浏览器
+      let rs = fs.createReadStream(filePath);
+      if (filePath.match(config.compress)) {
+        rs = compress(rs, req, res);
+      }
+      rs.pipe(res); // 创建一个读的流返回给浏览器
     } else if (stats.isDirectory()) {
       const files = await readdir(filePath);
       res.statusCode = 200;
