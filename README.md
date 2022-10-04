@@ -19,3 +19,12 @@ Content-Encoding: gzip\deflate
 range
 range： bytes=[start]-[end],可省略start、end，就从头到尾，用“，”分割，可以请求多个
 
+响应头（res）：
+Accept-Ranges:bytes
+Content-Range:bytes start-end/total
+
+curl
+curl http://127.0.0.1:9527/LICENSE
+curl -I http://127.0.0.1:9527/LICENSE
+curl -i http://127.0.0.1:9527/LICENSE
+curl -r 0-10 -i http://127.0.0.1:9527/LICENSE
