@@ -19,7 +19,7 @@ function refreshRes(stats, res) {
   }
 
   if (etag) {
-    res.setHeader("ETag", `${stats.size}-${stats.mtime}`);
+    res.setHeader("ETag", `${stats.size}${stats.mtime}`);
   }
 }
 

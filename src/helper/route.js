@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const config = require("../config/defaultConfig");
 const Handlebars = require("handlebars");
 // 去掉异步
 const promisify = require("util").promisify;
@@ -16,14 +15,15 @@ const isFresh = require("../helper/cache");
 const source = fs.readFileSync(tplPath);
 const template = Handlebars.compile(source.toString());
 
-module.exports = async function (req, res, filePath) {
+module.exports = async function (req, res, filePath, config) {
   try {
     const stats = await stat(filePath);
     if (stats.isFile()) {
       // 是文件
-      res.setHeader("Content-Type", mime(filePath));
+      res.setHeader("Content-Type", `${mime(filePath)};charset=utf-8`);
       let rs;
 
+      console.log("isFresh(stats, req, res)", isFresh(stats, req, res));
       if (isFresh(stats, req, res)) {
         res.statusCode = 304;
         res.end();
@@ -66,6 +66,6 @@ module.exports = async function (req, res, filePath) {
     console.log(error);
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/plain");
-    res.end(`${filePath} is not a file or directory`);
+    res.end(`${filePath} is not a file or directory \n \n \n ${error}`);
   }
 };
