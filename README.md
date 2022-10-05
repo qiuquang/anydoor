@@ -60,3 +60,25 @@ anydoor -d /usr # 设置根目录为/usr
 
 ```
 
+
+
+本地构建
+1.gulp 
+
+\* 匹配任意个字符
+
+？匹配一个字符
+
+[...] 匹配范围内字符
+
+!(pattern1|pattern2) 匹配取反
+
+?(pattern1|pattern2) 匹配0个或1个
+
++(pattern1|pattern2) 匹配1个或多个
+
+*(a|b|c) 匹配任意个
+
+@(pattern|pat*|pat?erN) 匹配特定一个
+
+** 任意层级匹配

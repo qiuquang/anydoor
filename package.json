@@ -23,11 +23,17 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
     "@types/node": "^18.8.0",
-    "eslint": "^8.24.0"
+    "eslint": "^8.24.0",
+    "gulp": "^4.0.2"
   },
   "dependencies": {
     "chalk": "4.0.0",
     "handlebars": "^4.7.7",
     "yargs": "^17.6.0"
-  }
+  },
+  "man": [
+    "./man/anydoor-qiuquang.1",
+    "./man/anydoor-qiuquang.2",
+    "./man/xxx.2"
+  ]
 }
